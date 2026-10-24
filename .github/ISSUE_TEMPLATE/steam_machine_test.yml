@@ -1,0 +1,74 @@
+name: Steam Machine test handoff
+description: Request a scoped, read-only validation run on the target Steam Machine.
+title: "[Device test]: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Keep one issue per test run. Read `.agents/skills/steam-machine-validation/SKILL.md` first. No root access or SteamOS system changes are part of routine testing.
+  - type: input
+    id: commit
+    attributes:
+      label: Commit SHA to test
+      description: Use the exact commit when available. If not, provide a PR or branch and update the issue with the SHA before running.
+      placeholder: 40-character commit SHA
+    validations:
+      required: true
+  - type: textarea
+    id: question
+    attributes:
+      label: Test question
+      description: What one behavior or acceptance criterion should this run verify?
+      placeholder: Verify the system memory card reads real physical RAM on SteamOS.
+    validations:
+      required: true
+  - type: textarea
+    id: setup
+    attributes:
+      label: Setup and mode
+      description: Device mode and safe prerequisites. Do not request system package installation.
+      placeholder: SteamOS Desktop Mode; repository checked out at the requested SHA.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Exact test steps and commands
+      description: State the commands, actions, and any known prerequisites.
+      placeholder: |
+        1. Build using the repository's documented command.
+        2. Launch the app in Desktop Mode.
+        3. Compare the displayed values with the stated expected behavior.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected result
+      description: Define what an observable pass looks like, including unavailable/error states.
+    validations:
+      required: true
+  - type: textarea
+    id: boundaries
+    attributes:
+      label: Test boundaries
+      description: Explicitly list excluded actions or scope. Standard no-root/no-system-modification limits still apply.
+      value: No sudo/root, system package installation, SteamOS base changes, unrelated process changes, or source edits.
+    validations:
+      required: true
+  - type: dropdown
+    id: result
+    attributes:
+      label: Result
+      options:
+        - Not run
+        - PASS
+        - FAIL
+        - BLOCKED
+    validations:
+      required: true
+  - type: textarea
+    id: report
+    attributes:
+      label: Test report
+      description: After testing, update this issue with SHA, SteamOS release, kernel, mode, commands run, outcome, and redacted evidence.

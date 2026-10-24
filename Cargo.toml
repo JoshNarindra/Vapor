@@ -1,0 +1,8 @@
+[package]
+name = "steam-os-hub-process-monitor"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.95"
+
+[dependencies]
+sysinfo = { version = "0.39.6", default-features = false, features = ["system"] }

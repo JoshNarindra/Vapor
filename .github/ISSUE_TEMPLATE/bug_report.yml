@@ -1,0 +1,67 @@
+name: Bug report
+description: Report a reproducible SteamOS Hub defect with device and commit context.
+title: "[Bug]: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Before submitting a device-specific issue, remove usernames, private paths, tokens, IP addresses, and unrelated process names from logs.
+  - type: input
+    id: commit
+    attributes:
+      label: Commit SHA or app version
+      placeholder: 40-character commit SHA
+    validations:
+      required: true
+  - type: input
+    id: steamos
+    attributes:
+      label: SteamOS release
+      description: Include the release or build shown by the device; do not include account or device serial details.
+    validations:
+      required: true
+  - type: input
+    id: kernel
+    attributes:
+      label: Kernel version
+      placeholder: Output of uname -r
+    validations:
+      required: false
+  - type: dropdown
+    id: mode
+    attributes:
+      label: Mode
+      options:
+        - Desktop Mode
+        - Other (describe below)
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1.
+        2.
+        3.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Redacted logs or screenshots
+      description: Include only evidence relevant to this bug; remove private data first.
+    validations:
+      required: false
